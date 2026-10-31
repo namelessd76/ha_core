@@ -41,6 +41,10 @@ class FlowFromGridSourceType(TypedDict):
     entity_energy_price: str | None  # entity_id of an entity providing price ($/kWh)
     number_energy_price: float | None  # Price for energy ($/kWh)
 
+    # entity_id of an entity providing transfer price ($/kWh)
+    # If set, a separate EnergyCostSensor for transfer costs will be created
+    entity_transfer_price: str | None
+
 
 class FlowToGridSourceType(TypedDict):
     """Dictionary describing the 'to' stat for the grid source."""
@@ -173,6 +177,7 @@ FLOW_FROM_GRID_SOURCE_SCHEMA = vol.All(
             vol.Remove("entity_energy_from"): vol.Any(str, None),
             vol.Optional("entity_energy_price"): vol.Any(str, None),
             vol.Optional("number_energy_price"): vol.Any(vol.Coerce(float), None),
+            vol.Optional("entity_transfer_price"): vol.Any(str, None),
         }
     ),
     _flow_from_ensure_single_price,

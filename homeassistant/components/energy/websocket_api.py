@@ -163,6 +163,7 @@ async def ws_info(
         msg["id"],
         {
             "cost_sensors": hass.data[DOMAIN]["cost_sensors"],
+            "transfer_cost_sensors": hass.data[DOMAIN]["transfer_cost_sensors"],
             "solar_forecast_domains": list(forecast_platforms),
         },
     )
